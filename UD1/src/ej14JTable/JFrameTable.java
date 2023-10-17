@@ -84,9 +84,9 @@ public class JFrameTable extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCargarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCargarClientesActionPerformed
-        Cliente[] clientes = new Cliente[4];
+        Cliente[] clientes = new Cliente[5];
         for (int i = 0; i < clientes.length; i++) {
-            clientes[i] = new Cliente("Nombre1", "Apellido1", "Huesca", 18+i);
+            clientes[i] = new Cliente("Nombre1", "Apellido1", "Huesca", 18+i, "Correo1");
         }
         for (Cliente cliente : clientes) {
             dtm.addRow(cliente.getValores());

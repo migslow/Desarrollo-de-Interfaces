@@ -9,17 +9,18 @@ package ej14JTable;
  * @author DAM2Alu10
  */
 public class Cliente {
-    String nombre, apellido, provincia;
+    String nombre, apellido, provincia, correo;
     int edad;
 
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String provincia, int edad) {
+    public Cliente(String nombre, String apellido, String provincia, int edad, String correo) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.provincia = provincia;
         this.edad = edad;
+        this.correo = correo;
     }
 
     public String getApellido() {
@@ -32,6 +33,10 @@ public class Cliente {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
     }
 
     public String getProvincia() {
@@ -53,14 +58,18 @@ public class Cliente {
     public void setProvincia(String provincia) {
         this.provincia = provincia;
     }
-    
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public static String[] getCampos(){
-        String campos[] = {"Nombre", "Apellidos", "Provincia", "Edad"};
+        String campos[] = {"Nombre", "Apellidos", "Provincia", "Edad", "Correo"};
         return campos;
     }
     
     public String [] getValores(){
-        String valores[] = {nombre, apellido, provincia, String.valueOf(edad)};
+        String valores[] = {nombre, apellido, provincia, String.valueOf(edad), correo};
         return valores;
     }
 
