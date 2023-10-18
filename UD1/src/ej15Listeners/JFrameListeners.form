@@ -125,6 +125,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Arrastrar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jButtonArrastrarMouseDragged"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelContenedor">
       <Properties>
@@ -132,6 +135,10 @@
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelContenedorMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelContenedorMouseExited"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

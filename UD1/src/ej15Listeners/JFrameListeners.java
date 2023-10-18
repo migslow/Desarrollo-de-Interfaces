@@ -4,7 +4,12 @@
  */
 package ej15Listeners;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -15,8 +20,18 @@ public class JFrameListeners extends javax.swing.JFrame {
     /**
      * Creates new form JFrameListeners
      */
+    ActionListener a = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("No copies");
+        }
+    };
+
     public JFrameListeners() {
         initComponents();
+        KeyStroke ctrl_C = KeyStroke.getKeyStroke(KeyEvent.VK_C, java.awt.Event.CTRL_MASK, true);
+        getRootPane().registerKeyboardAction(a, ctrl_C, JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
     }
 
     /**
@@ -80,8 +95,21 @@ public class JFrameListeners extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextAreaArrastrar);
 
         jButtonArrastrar.setText("Arrastrar");
+        jButtonArrastrar.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButtonArrastrarMouseDragged(evt);
+            }
+        });
 
         jPanelContenedor.setBackground(new java.awt.Color(255, 0, 0));
+        jPanelContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jPanelContenedorMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jPanelContenedorMouseExited(evt);
+            }
+        });
 
         jLabelOculto.setText("Oculto");
 
@@ -168,7 +196,7 @@ public class JFrameListeners extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         jPanelOculto.setVisible(false);
-        
+
     }//GEN-LAST:event_formWindowOpened
 
     private void jTextFieldOriginalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOriginalActionPerformed
@@ -176,7 +204,7 @@ public class JFrameListeners extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldOriginalActionPerformed
 
     private void jTextFieldOriginalKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldOriginalKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             System.out.println("Capturada la tecla Enter");
         }
     }//GEN-LAST:event_jTextFieldOriginalKeyReleased
@@ -187,13 +215,34 @@ public class JFrameListeners extends javax.swing.JFrame {
 
     private void jTextFieldOriginalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldOriginalFocusLost
         System.out.println("Se ha perdido el foco");
+        jTextAreaArrastrar.requestFocus();
     }//GEN-LAST:event_jTextFieldOriginalFocusLost
 
     private void jTextFieldOriginalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldOriginalKeyPressed
         jTextFieldCopia.setText(jTextFieldOriginal.getText());
         System.out.println("Tamaño actual: " + jTextFieldOriginal.getText().length());
-        
+        Color original = jTextFieldOriginal.getBackground();
+        if (jTextFieldOriginal.getText().length() < 25) {
+            jTextFieldOriginal.setBackground(original);
+        } else if (jTextFieldOriginal.getText().length() > 30) {
+            jTextFieldOriginal.setBackground(Color.red);
+        } else {
+            jTextFieldOriginal.setBackground(Color.yellow);
+        }
     }//GEN-LAST:event_jTextFieldOriginalKeyPressed
+
+
+    private void jButtonArrastrarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonArrastrarMouseDragged
+        System.out.println("Arrastrando a la posicion: " + evt.getPoint());
+    }//GEN-LAST:event_jButtonArrastrarMouseDragged
+
+    private void jPanelContenedorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelContenedorMouseEntered
+        jPanelOculto.setVisible(true);
+    }//GEN-LAST:event_jPanelContenedorMouseEntered
+
+    private void jPanelContenedorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelContenedorMouseExited
+        jPanelOculto.setVisible(false);
+    }//GEN-LAST:event_jPanelContenedorMouseExited
 
     /**
      * @param args the command line arguments
