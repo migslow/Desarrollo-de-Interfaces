@@ -4,7 +4,7 @@
  */
 package ej16LookAndFeel;
 
-import com.jtattoo.plaf.texture.TextureLookAndFeel;
+// import com.jtattoo.plaf.texture.TextureLookAndFeel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -28,7 +28,7 @@ public class JFrameLookAndFeelTattoo extends javax.swing.JFrame {
             dcm.addElement(lafi.getName());
         }
         jComboBoxLookAndFeel.setModel(dcm);
-        UIManager.setLookAndFeel(TextureLookAndFeel.class.getCanonicalName());
+        // UIManager.setLookAndFeel(TextureLookAndFeel.class.getCanonicalName());
         SwingUtilities.updateComponentTreeUI(this);
 
     }
